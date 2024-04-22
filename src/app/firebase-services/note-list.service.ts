@@ -108,33 +108,27 @@ export class NoteListService {
   }
 
   subNotesList() {
-    let ref = collection(this.firestore, 'notes/0dYIR1ZLEbeI1LdSO7Ur/notesExtra')
-    const q = query(ref, limit(100));
+    const q = query(this.getNotesRef(), limit(100));
     return onSnapshot(q, (list) => {
       this.normalNotes = [];
       list.forEach((element) => {
         this.normalNotes.push(this.setNoteObject(element.data(), element.id));
       });
-      list.docChanges().forEach((change) => {
-        if (change.type === 'added') {
-          console.log('New note: ', change.doc.data());
-        }
-        if (change.type === 'modified') {
-          console.log('Modified note: ', change.doc.data());
-        }
-        if (change.type === 'removed') {
-          console.log('Removed note: ', change.doc.data());
-        }
-      });
     });
   }
 
   subMarkedNotesList() {
-    const q = query(this.getNotesRef(), where("marked","==",true),  limit(100));
+    const q = query(
+      this.getNotesRef(),
+      where('marked', '==', true),
+      limit(100)
+    );
     return onSnapshot(q, (list) => {
       this.normalMarkedNotes = [];
       list.forEach((element) => {
-        this.normalMarkedNotes.push(this.setNoteObject(element.data(), element.id));
+        this.normalMarkedNotes.push(
+          this.setNoteObject(element.data(), element.id)
+        );
       });
     });
   }
