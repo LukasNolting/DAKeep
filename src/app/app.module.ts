@@ -19,16 +19,25 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     FooterComponent,
     NoteListComponent,
     NoteComponent,
-    AddNoteDialogComponent
+    AddNoteDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    provideFirebaseApp(() => initializeApp({"projectId":"danotes-63df7","appId":"1:968248009236:web:bde0939a1e4bb4662dfd01","storageBucket":"danotes-63df7.appspot.com","apiKey":"AIzaSyBwYTdgm2t1U1YZPD4c436sZWGo6nMSXwQ","authDomain":"danotes-63df7.firebaseapp.com","messagingSenderId":"968248009236"})),
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'danotes-63df7',
+        appId: '1:968248009236:web:bde0939a1e4bb4662dfd01',
+        storageBucket: 'danotes-63df7.appspot.com',
+        apiKey: 'AIzaSyBwYTdgm2t1U1YZPD4c436sZWGo6nMSXwQ',
+        authDomain: 'danotes-63df7.firebaseapp.com',
+        messagingSenderId: '968248009236',
+      })
+    ),
     provideFirestore(() => getFirestore()),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
